@@ -1,7 +1,7 @@
 <html>
 <?php
 	$link = mysqli_connect("localhost", "root", "3ng1neering");
-    $tableName = "storage";
+    $tableName = "floor";
 
         if(!$link){
                 die("ERROR: Could not connect. " . mysqli_connect_error());

@@ -3,7 +3,6 @@
 	<title>Test</title>
 
 	<?php
-#hello
 		$link = mysqli_connect("localhost", "root", "3ng1neering");
 
 		if(!$link){
@@ -49,13 +48,18 @@
 
 		<br>
 
-	        <h2>Add items to line:</h2>
+        <h2>Add items to line:</h2>
 	        <form method="POST" action="add_line.php">
 	        Warehouse ID: <input type="text" name="id">
 	        Warehouse Amount: <input type="text" name="amount">
 	        <input type="submit" value="Submit">
 	        </form>
 
+        <br>
+
+        <form method="get" action="show_warehouse.php">
+	        <input type="submit" value="Show Tables in Warehouse" action="show_warehouse.php">
+        </form>
 
 		<?php 
 			mysqli_close($link);
