@@ -3,9 +3,9 @@
 	$link = mysqli_connect("localhost", "root", "3ng1neering");
     $tableName = "storage";
 
-        if(!$link){
-                die("ERROR: Could not connect. " . mysqli_connect_error());
-        }
+    if(!$link){
+            die("ERROR: Could not connect. " . mysqli_connect_error());
+    }
 
 	if (mysqli_select_db($link, "warehouse")){
 		echo "selected warehouse database";
@@ -13,11 +13,24 @@
 		if (mysqli_query($link, $sql)){
 			echo "<br>created table $tableName";
 			// add item
-			$sql = "INSERT INTO $tableName (id, amount) VALUES (" . $_POST['id'] . ", " . $_POST['amount'] . ")";
-            if (mysqli_query($link, $sql)){
-	                echo "<br>Added: " . $_POST['amount'] . " of " . $_POST['id'] . " to $tableName";
-        	} else {
-                	echo "<br>didn't add values to $tableName " . mysqli_error($link);
+            // checks to see if item already exists, if doesn't adds a new one
+            $sql = "SELECT " . $_POST['amount'] . " FROM $tableName WHERE id=" . $_POST['id'];
+            if (mysqli_num_rows(mysqli_query($link,$sql)) == 0){
+                $sql = "INSERT INTO $tableName (id, amount) VALUES (" . $_POST['id'] . ", " . $_POST['amount'] . ")";
+                if (mysqli_query($link, $sql)){
+                    echo "<br>Added: " . $_POST['amount'] . " of " . $_POST['id'] . " to $tableName";
+                } else {
+                    echo "<br>didn't add values to $tableName " . mysqli_error($link);
+                }
+            } else {
+                // otherwise it updates what's already there
+                $prevAmount = mysqli_fetch_row(mysqli_query($link, "SELECT amount FROM $tableName WHERE id=" . $_POST['id']));
+                $sql = "UPDATE $tableName SET amount=" . ((int)$_POST['amount'] + (int)$prevAmount[0])  . " WHERE id=" . $_POST['id'];
+                if (mysqli_query($link, $sql)){
+                    echo "<br>Updated " . $_POST['amount'] . " to " . $_POST['id'] . "<br>Total: " . ((int)$_POST['amount'] + (int)$prevAmount[0]) . " items";
+                } else {
+                    echo "<br>didn't add values to $tableName " . mysqli_error($link);
+                } 
             }
             // update item
             /*$sql = "UPDATE $tableName SET amount=600 WHERE id=" . $_POST['id'];
@@ -39,6 +52,8 @@
 	} else {
 		echo "failed to select database " . mysqli_error($link);
 	}
+
+    mysqli_close($link);
 ?>
 
 <br>

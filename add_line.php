@@ -43,6 +43,8 @@
 	} else {
 		echo "failed to select database " . mysqli_error($link);
 	}
+
+    mysqli_close($link);
 ?>
 
 <br>

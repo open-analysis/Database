@@ -35,6 +35,7 @@
     		// prints all the tables from the warehouse database if the clear button hasn't been pressed
     		$buttonText = "Clear";
     		$clearVal = "clear";
+
     		$sql = "SHOW TABLES FROM warehouse";
 			if ($result = mysqli_query($link, $sql)){
 				echo "<br>Going through tables<br>";
@@ -44,8 +45,32 @@
 	    	} else {
 	        	echo "<br>couldn't show tables" . mysqli_error($link);
 	        }
+	        // goes through what's actually in each table
+	        echo "<br><br>";
+	        $tableName = ["storage", "line", "floor"];
+	        for ($i = 0; $i < 3; $i++){
+	        	echo "<br>";
+		        $sql = "SELECT * FROM $tableName[$i]";
+				if ($result = mysqli_query($link, $sql)){
+					echo "$tableName[$i]<br><table border=1> 
+					<tr>
+					<th>ID</th>
+					<th>Amount</th>
+					</tr>";
+					while ($row = mysqli_fetch_array($result)){
+						echo "<tr>";
+						echo "<td>" . $row['id'] . " </td>";
+						echo "<td>" . $row['amount'] . " </td>";
+						echo "</tr>";
+					}
+					echo "</table>";
+		    	} else {
+		        	echo "<br>$tableName[$i] doesn't exist";
+		        }
+	        }	        
     	}
 	}
+	mysqli_close($link);
 ?>
 
 <?=
