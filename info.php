@@ -43,6 +43,7 @@
 	        <form method="POST" action="add_line.php">
 	        Warehouse ID: <input type="text" name="id">
 	        Warehouse Amount: <input type="text" name="amount">
+	        <!-- Max Amount (Default 200): <input type="text" name="max"> -->
 	        <input type="submit" value="Submit">
 	        </form>
 
@@ -52,13 +53,20 @@
 	        <form method="POST" action="add_floor.php">
 	        Warehouse ID: <input type="text" name="id">
 	        Warehouse Amount: <input type="text" name="amount">
-	        <input type="submit" value="Submit">
+	       <!-- Max Amount (Default 100): <input type="text" name="max"> -->
+	        <input type="submit" value="Submit"> 
 	        </form>
 
         <br>
 
         <form method="get" action="show_warehouse.php">
 	        <input type="submit" value="Show Tables in Warehouse">
+        </form>
+
+        <br>
+
+        <form method="get" action="replinish.php">
+	        <input type="submit" value="Replinish">
         </form>
 
 		<?php 
