@@ -15,11 +15,11 @@
 			// add item (takes them from storage & puts them into the line)
             // checks to see if there's enough in storage
 			$sql = "SELECT amount FROM storage WHERE id = " . $_POST['id'];
-            if ($result = (int)mysqli_query($link, $sql)){
+            if ($result = (int)mysqli_fetch_row(mysqli_query($link, $sql))[0]) {
                 if ($result >= (int)$_POST['amount']){
                     echo "<br>There's enough products in storage";
                     // removes the amount indicated from the storage
-                    $sql = "UPDATE storage SET amount = " . $result - $_POST['amount'] . " WHERE id = " . $_POST['id'];
+                    $sql = "UPDATE storage SET amount = " . ($result - (int)$_POST['amount']) . " WHERE id = " . $_POST['id'];
                     if (mysqli_query($link, $sql)){
                         // adds said amount to the line table
                         $sql = "INSERT INTO $tableName (id, amount) VALUES (" . $_POST['id'] . ", " . $_POST['amount'] . ")";
