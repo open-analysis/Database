@@ -67,7 +67,7 @@
 		    	} else {
 		        	echo "<br>$tableName[$i] doesn't exist";
 		        }
-	        }	        
+	        }        
     	}
 	}
 	mysqli_close($link);

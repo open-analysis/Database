@@ -58,9 +58,9 @@
         <br>
 
         <form method="get" action="show_warehouse.php">
-	        <input type="submit" value="Show Tables in Warehouse" action="show_warehouse.php">
+	        <input type="submit" value="Show Tables in Warehouse">
         </form>
-        
+
 		<?php 
 			mysqli_close($link);
 		?>
