@@ -9,7 +9,7 @@
 
 	if (mysqli_select_db($link, "warehouse")){
 		echo "selected warehouse database";
-		$sql = "CREATE TABLE IF NOT EXISTS $tableName (id INTEGER, amount INTEGER)";
+		$sql = "CREATE TABLE IF NOT EXISTS $tableName (id INTEGER PRIMARY KEY, amount INTEGER)";
 		if (mysqli_query($link, $sql)){
 			echo "<br>created table $tableName";
 			// add item
