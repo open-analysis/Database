@@ -65,8 +65,8 @@
 
         <br>
 
-        <form method="get" action="replinish.php">
-	        <input type="submit" value="Replinish">
+        <form method="get" action="replenish.php">
+	        <input type="submit" value="Replenish">
         </form>
 
 		<?php 
