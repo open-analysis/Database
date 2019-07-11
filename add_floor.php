@@ -1,5 +1,8 @@
 <html>
 <?php
+    $errSt = "<h1 class=\"error\">";
+    $errEn = "</h1>";
+
     $link = mysqli_connect("localhost", "root", "3ng1neering");
     $tableName = "floor";
 
@@ -31,7 +34,7 @@
                             if (mysqli_query($link, $sql)){
                                 echo "<br>Added: " . $_POST['amount'] . " of " . $_POST['id'] . " to $tableName";
                             } else {
-                                echo "<br>didn't add values to $tableName " . mysqli_error($link);
+                                echo $errSt . "<br>didn't add values to $tableName " . mysqli_error($link) . $errEn;
                             }
                         } else {
                             // otherwise it updates what's already there
@@ -40,10 +43,10 @@
                             if (mysqli_query($link, $sql)){
                                 echo "<br>Updated " . $_POST['amount'] . " to " . $_POST['id'] . "<br>Total: " . ((int)$_POST['amount'] + (int)$prevAmount[0]) . " items";
                             } else {
-                                echo "<br>didn't add values to $tableName " . mysqli_error($link);
+                                echo $errSt . "<br>didn't add values to $tableName " . mysqli_error($link) . $errEn;
                             } 
                         }
-                        
+
                         /*$sql = "INSERT INTO $tableName (id, amount) VALUES (" . $_POST['id'] . ", " . $_POST['amount'] . ")";
                         if (mysqli_query($link, $sql)){
                             echo "<br>Added: " . $_POST['amount'] . " of " . $_POST['id'] . " to $tableName";
@@ -52,19 +55,19 @@
                         }*/
 
                     } else {
-                        echo "<br>couldn't update the line table " . mysqli_error($link);
+                        echo $errSt . "<br>couldn't update the line table " . mysqli_error($link) . $errEn;
                     }
                 } else {
-                    echo "<br>There's either not enough or something went from depends on -> " . mysqli_error($link);
+                    echo $errSt . "<br>There's either not enough or something went from depends on -> " . mysqli_error($link) . $errEn;
                 }
             } else {
-                echo "<br>didn't add values to $tableName " . mysqli_error($link);
+                echo $errSt . "<br>didn't add values to $tableName " . mysqli_error($link) . $errEn;
             }
         } else {
-            echo "<br>didn't create table " . mysqli_error($link);
+            echo $errSt . "<br>didn't create table " . mysqli_error($link) . $errEn;
         }
     } else {
-        echo "failed to select database " . mysqli_error($link);
+        echo $errSt . "failed to select database " . mysqli_error($link) . $errEn;
     }
 
     mysqli_close($link);

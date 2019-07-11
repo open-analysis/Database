@@ -6,9 +6,9 @@
 	<script>"script.js"</script>
 	<script>
 		$(document).ready(function(){
-		  $("#test").click(function(){
-		    $(this).hide();
-		  });
+		  //$("#test").click(function(){
+		    //$(this).hide();
+		  //});
 		  $("*").mouseenter(function(){
 		  	$(".error").css("color", "red");
 		  });
@@ -19,10 +19,12 @@
 	<title>Test</title>
 
 	<?php
+		$errSt = "<h1 class=\"error\">";
+		$errEn = "</h1>";
 		$link = mysqli_connect("localhost", "root", "3ng1neering");
 
 		if(!$link){
-			die("ERROR: Could not connect. " . mysqli_connect_error());
+			die(errSt . "ERROR: Could not connect. " . mysqli_connect_error()) . $errEn;
 			echo "<br>";
 		}
 
@@ -30,8 +32,7 @@
         if (mysqli_query($link, $sql)){
                 //echo "Database warehouse created";
         } else {
-                echo "<h1 class='error'>Database failed to be created" . mysqli_error($link);
-                echo "</h1>";
+                echo $errSt ."Database failed to be created" . mysqli_error($link) . $errEn;
         }
 
 		?>
@@ -77,7 +78,7 @@
 
         <br>
 
-        <button id="test">Test</button>
+        <button id="test" class="error">Test</button>
 
 
 		<?php 
