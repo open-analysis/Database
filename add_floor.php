@@ -18,16 +18,39 @@
             if ($result = (int)mysqli_fetch_row(mysqli_query($link, $sql))[0]) {
                 if ($result >= (int)$_POST['amount']){
                     echo "<br>There's enough products in line";
+
                     // removes the amount indicated from the line
                     $sql = "UPDATE line SET amount = " . ($result - (int)$_POST['amount']) . " WHERE id = " . $_POST['id'];
                     if (mysqli_query($link, $sql)){
                         // adds said amount to the line table
-                        $sql = "INSERT INTO $tableName (id, amount) VALUES (" . $_POST['id'] . ", " . $_POST['amount'] . ")";
+
+                        // checks to see if item already exists, if doesn't adds a new one
+                        $sql = "SELECT " . $_POST['amount'] . " FROM $tableName WHERE id=" . $_POST['id'];
+                        if (mysqli_num_rows(mysqli_query($link,$sql)) == 0){
+                            $sql = "INSERT INTO $tableName (id, amount) VALUES (" . $_POST['id'] . ", " . $_POST['amount'] . ")";
+                            if (mysqli_query($link, $sql)){
+                                echo "<br>Added: " . $_POST['amount'] . " of " . $_POST['id'] . " to $tableName";
+                            } else {
+                                echo "<br>didn't add values to $tableName " . mysqli_error($link);
+                            }
+                        } else {
+                            // otherwise it updates what's already there
+                            $prevAmount = mysqli_fetch_row(mysqli_query($link, "SELECT amount FROM $tableName WHERE id=" . $_POST['id']));
+                            $sql = "UPDATE $tableName SET amount=" . ((int)$_POST['amount'] + (int)$prevAmount[0])  . " WHERE id=" . $_POST['id'];
+                            if (mysqli_query($link, $sql)){
+                                echo "<br>Updated " . $_POST['amount'] . " to " . $_POST['id'] . "<br>Total: " . ((int)$_POST['amount'] + (int)$prevAmount[0]) . " items";
+                            } else {
+                                echo "<br>didn't add values to $tableName " . mysqli_error($link);
+                            } 
+                        }
+                        
+                        /*$sql = "INSERT INTO $tableName (id, amount) VALUES (" . $_POST['id'] . ", " . $_POST['amount'] . ")";
                         if (mysqli_query($link, $sql)){
                             echo "<br>Added: " . $_POST['amount'] . " of " . $_POST['id'] . " to $tableName";
                         } else {
                             echo "<br>didn't add values to $tableName " . mysqli_error($link);
-                        }
+                        }*/
+
                     } else {
                         echo "<br>couldn't update the line table " . mysqli_error($link);
                     }
