@@ -3,12 +3,11 @@
 <head>
 	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
 	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-	<script>"script.js"</script>
 	<script>
 		$(document).ready(function(){
-		  //$("#test").click(function(){
-		    //$(this).hide();
-		  //});
+		  $("#test").click(function(){
+		    $(this).hide();
+		  });
 		  $("*").mouseenter(function(){
 		  	$(".error").css("color", "red");
 		  });

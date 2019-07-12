@@ -1,4 +1,12 @@
 <html>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+          $("*").mouseenter(function(){
+            $(".error").css("color", "red");
+          });
+        });
+    </script>
 <?php
     $errSt = "<h1 class=\"error\">";
     $errEn = "</h1>";
