@@ -1,8 +1,10 @@
 <html>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+<script src="script.js"></script>
 
 <?php 
 
-	$link = mysqli_connect("localhost", "root", "3ng1neering");
+	$link = mysqli_connect("localhost", "root", "password");
 
     if(!$link){
             die("ERROR: Could not connect. " . mysqli_connect_error());
@@ -82,5 +84,5 @@
 	</form>";	
 ?>
 <br>
-<a href="info.php">Back</a>
+<button id="return" onclick="window.location.href = 'info.php';">Back</button>
 </html>

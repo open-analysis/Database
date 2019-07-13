@@ -85,6 +85,7 @@
 ?>
 
 <br>
+<br>
 
-<a href="info.php">Back</a>
+<button id="return" onclick="window.location.href = 'info.php';">Back</button>
 </html>

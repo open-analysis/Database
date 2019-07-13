@@ -184,5 +184,6 @@
 	</form>";	
 ?>
 <br>
-<a href="info.php">Back</a>
+<br>
+<button id="return" onclick="window.location.href = 'info.php';">Back</button>
 </html>

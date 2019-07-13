@@ -1,5 +1,6 @@
 <html>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script>script.js</script>
     <script>
         $(document).ready(function(){
           $("*").mouseenter(function(){
@@ -68,6 +69,7 @@
 ?>
 
 <br>
+<br>
 
-<a href="info.php">Back</a>
+<button id="return" onclick="window.location.href = 'info.php';">Back</button>
 </html>
