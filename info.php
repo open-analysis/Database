@@ -20,7 +20,7 @@
 	<?php
 		$errSt = "<h1 class=\"error\">";
 		$errEn = "</h1>";
-		$link = mysqli_connect("localhost", "root", "3ng1neering");
+		$link = mysqli_connect("localhost", "root", "password");
 
 		if(!$link){
 			die(errSt . "ERROR: Could not connect. " . mysqli_connect_error()) . $errEn;
