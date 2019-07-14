@@ -1,6 +1,12 @@
 <html>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-<script src="script.js"></script>
+<script>
+	$(document).read(function(){
+            $("*").mouseenter(function(){
+                $("#return").css("color", "red");
+            });
+        });
+</script>
 
 <?php 
 
